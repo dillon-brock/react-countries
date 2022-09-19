@@ -6,14 +6,33 @@ import { useCountries } from '../../hooks/useCountries';
 
 export default function Main() {
 
-  const { filterCountries, searchTerm, setSearchTerm, continent, setContinent, sort, setSort } = useCountries();
+  const { filterCountries,
+    searchTerm,
+    setSearchTerm,
+    continent,
+    setContinent,
+    sort,
+    setSort,
+    loading,
+    setLoading
+  } = useCountries();
 
-  return (
-    <main>
-      <Filter {...{ searchTerm, setSearchTerm, continent, setContinent, setSort }}/>
+  let display;
+  if (loading) {
+    display = <h3>Loading...</h3>;
+  }
+  else {
+    display = (
       <div id='countries'>
         {filterCountries().map(country => <CountryCard key={country.id} { ...country } />)}
       </div>
+    );
+  }
+  return (
+    <main>
+      <h1>Flags of the World</h1>
+      <Filter {...{ searchTerm, setSearchTerm, continent, setContinent, setSort }}/>
+      {display}
     </main>
   );
 }

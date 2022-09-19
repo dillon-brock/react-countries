@@ -1,10 +1,10 @@
 import { checkError, client } from './client';
 
-export async function fetchCountries() {
+export async function fetchCountries(name) {
   const resp = await client
     .from('countries')
-    .select('*');
+    .select('*')
+    .ilike('name', `%${name}%`);
   
-  console.log(resp.data[0]);
   return checkError(resp);
 }

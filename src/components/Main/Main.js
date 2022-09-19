@@ -11,12 +11,12 @@ export default function Main() {
   const [countries, setCountries] = useState([]);
 
   useEffect(() => {
-    async function fetchData() {
-      const data = await fetchCountries();
+    async function fetchData(name) {
+      const data = await fetchCountries(name);
       setCountries(data);
     }
     fetchData(searchTerm);
-  }, []);
+  }, [searchTerm]);
 
   const filterCountries = () => {
     return continent ? countries.filter((country) => country.continent === continent) : countries;

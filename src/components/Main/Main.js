@@ -4,23 +4,11 @@ import { useEffect, useState } from 'react';
 import { fetchCountries } from '../../services/countries';
 import CountryCard from '../CountryCard/CountryCard';
 import Filter from '../Filter/Filter';
+import { useCountries } from '../../hooks/useCountries';
 
 export default function Main() {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [continent, setContinent] = useState('');
-  const [countries, setCountries] = useState([]);
 
-  useEffect(() => {
-    async function fetchData(name) {
-      const data = await fetchCountries(name);
-      setCountries(data);
-    }
-    fetchData(searchTerm);
-  }, [searchTerm]);
-
-  const filterCountries = () => {
-    return continent ? countries.filter((country) => country.continent === continent) : countries;
-  };
+  const { filterCountries, searchTerm, setSearchTerm, continent, setContinent } = useCountries();
 
   return (
     <main>

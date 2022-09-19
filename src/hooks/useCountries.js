@@ -5,23 +5,25 @@ export function useCountries() {
   const [searchTerm, setSearchTerm] = useState('');
   const [continent, setContinent] = useState('');
   const [countries, setCountries] = useState([]);
+  const [sort, setSort] = useState(false);
 
   useEffect(() => {
-    async function fetchData(name) {
+    async function fetchData(name, sort) {
       try {
-        const data = await fetchCountries(name);
+        const data = await fetchCountries(name, sort);
         setCountries(data);
       }
       catch (e) {
-        console.log(e);
+        // eslint-disable-next-line no-console
+        console.error(e);
       }
     }
-    fetchData(searchTerm);
-  }, [searchTerm]);
+    fetchData(searchTerm, sort);
+  }, [searchTerm, sort]);
 
   const filterCountries = () => {
     return continent ? countries.filter((country) => country.continent === continent) : countries;
   };
 
-  return { filterCountries, searchTerm, setSearchTerm, continent, setContinent };
+  return { filterCountries, searchTerm, setSearchTerm, continent, setContinent, sort, setSort };
 }

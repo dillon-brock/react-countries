@@ -1,4 +1,6 @@
-export default function Filter({ continent, setContinent, searchTerm, setSearchTerm }) {
+import './Filter.css';
+
+export default function Filter({ continent, setContinent, searchTerm, setSearchTerm, setSort }) {
   return (
     <div>
       <select value={continent} onChange={(e) => {
@@ -13,9 +15,13 @@ export default function Filter({ continent, setContinent, searchTerm, setSearchT
         <option value='Antarctica'>Antarctica</option>
         <option value='Asia'>Asia</option>
       </select>
-      <input type='text' value={searchTerm} onChange={(e) => {
+      <input id='sort' type='text' value={searchTerm} onChange={(e) => {
         setSearchTerm(e.target.value);
       }}></input>
+      <label id='sort'>
+        Sort By Name
+        <input type='checkbox' onChange={() => setSort((prevState) => !prevState)}/>
+      </label>
     </div>
   );
 }

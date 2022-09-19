@@ -2,7 +2,9 @@ import { checkError, client } from './client';
 
 export async function fetchCountries() {
   const resp = await client
-    .select('*')
+    .from('countries')
+    .select('*');
   
+  console.log(resp.data[0]);
   return checkError(resp);
 }

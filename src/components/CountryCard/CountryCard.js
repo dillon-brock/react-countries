@@ -1,3 +1,5 @@
+import './CountryCard.css';
+
 export default function CountryCard({ name, iso2 }) {
   return (
     <div className="country">

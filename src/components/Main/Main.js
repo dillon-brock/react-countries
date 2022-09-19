@@ -1,3 +1,5 @@
+import './Main.css';
+
 import { useEffect, useState } from 'react';
 import { fetchCountries } from '../../services/countries';
 import CountryCard from '../CountryCard/CountryCard';

@@ -8,8 +8,13 @@ export function useCountries() {
 
   useEffect(() => {
     async function fetchData(name) {
-      const data = await fetchCountries(name);
-      setCountries(data);
+      try {
+        const data = await fetchCountries(name);
+        setCountries(data);
+      }
+      catch (e) {
+        console.log(e);
+      }
     }
     fetchData(searchTerm);
   }, [searchTerm]);

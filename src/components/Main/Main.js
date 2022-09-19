@@ -19,7 +19,7 @@ export default function Main() {
 
   let display;
   if (loading) {
-    display = <h3>Loading...</h3>;
+    display = <div className="loader"></div>;
   }
   else {
     display = (

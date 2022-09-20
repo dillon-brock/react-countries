@@ -12,7 +12,8 @@ export default function Main() {
     continent,
     setContinent,
     setSort,
-    loading
+    loading,
+    error
   } = useCountries();
 
   const display = () => {
@@ -28,6 +29,7 @@ export default function Main() {
     <main>
       <h1>Flags of the World</h1>
       <Filter {...{ searchTerm, setSearchTerm, continent, setContinent, setSort }}/>
+      <h3>{error}</h3>
       {display()}
     </main>
   );

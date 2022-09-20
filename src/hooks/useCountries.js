@@ -7,6 +7,7 @@ export function useCountries() {
   const [countries, setCountries] = useState([]);
   const [sort, setSort] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     async function fetchData(name, sort) {
@@ -15,10 +16,11 @@ export function useCountries() {
         const data = await fetchCountries(name, sort);
         setCountries(data);
         setLoading(false);
+        setError('');
       }
       catch (e) {
-        // eslint-disable-next-line no-console
-        console.error(e);
+        setLoading(false);
+        setError(e.message);
       }
     }
     fetchData(sort);
@@ -32,5 +34,5 @@ export function useCountries() {
       countries.filter((country) => country.name.match(regex));
   };
 
-  return { filterCountries, searchTerm, setSearchTerm, continent, setContinent, sort, setSort, loading };
+  return { filterCountries, searchTerm, setSearchTerm, continent, setContinent, sort, setSort, loading, error };
 }

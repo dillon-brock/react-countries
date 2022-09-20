@@ -1,10 +1,9 @@
 import { checkError, client } from './client';
 
-export async function fetchCountries(name, sort) {
+export async function fetchCountries(sort) {
   const query = client
     .from('countries')
-    .select('*')
-    .ilike('name', `%${name}%`);
+    .select('*');
   
   if (sort) query.order('name');
 

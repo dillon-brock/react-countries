@@ -21,11 +21,15 @@ export function useCountries() {
         console.error(e);
       }
     }
-    fetchData(searchTerm, sort);
-  }, [searchTerm, sort]);
+    fetchData(sort);
+  }, [sort]);
 
   const filterCountries = () => {
-    return continent ? countries.filter((country) => country.continent === continent) : countries;
+    const regex = new RegExp(`.*${searchTerm}.*`, 'i');
+
+    return continent ?
+      countries.filter((country) => country.continent === continent && country.name.match(regex)) :
+      countries.filter((country) => country.name.match(regex));
   };
 
   return { filterCountries, searchTerm, setSearchTerm, continent, setContinent, sort, setSort, loading, setLoading };

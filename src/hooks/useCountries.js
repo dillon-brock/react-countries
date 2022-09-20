@@ -10,10 +10,10 @@ export function useCountries() {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    async function fetchData(name, sort) {
+    async function fetchData(sort) {
       try {
         setLoading(true);
-        const data = await fetchCountries(name, sort);
+        const data = await fetchCountries(sort);
         setCountries(data);
         setLoading(false);
         setError('');

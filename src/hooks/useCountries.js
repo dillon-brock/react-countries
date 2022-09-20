@@ -32,5 +32,5 @@ export function useCountries() {
       countries.filter((country) => country.name.match(regex));
   };
 
-  return { filterCountries, searchTerm, setSearchTerm, continent, setContinent, sort, setSort, loading, setLoading };
+  return { filterCountries, searchTerm, setSearchTerm, continent, setContinent, sort, setSort, loading };
 }

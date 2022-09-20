@@ -15,22 +15,20 @@ export default function Main() {
     loading
   } = useCountries();
 
-  let display;
-  if (loading) {
-    display = <div className="loader"></div>;
-  }
-  else {
-    display = (
+  const display = () => {
+    if (loading) return <div className="loader"></div>;
+    return (
       <div id='countries'>
         {filterCountries().map(country => <CountryCard key={country.id} { ...country } />)}
       </div>
     );
-  }
+  };
+
   return (
     <main>
       <h1>Flags of the World</h1>
       <Filter {...{ searchTerm, setSearchTerm, continent, setContinent, setSort }}/>
-      {display}
+      {display()}
     </main>
   );
 }

@@ -11,10 +11,8 @@ export default function Main() {
     setSearchTerm,
     continent,
     setContinent,
-    sort,
     setSort,
-    loading,
-    setLoading
+    loading
   } = useCountries();
 
   let display;
